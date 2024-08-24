@@ -1,0 +1,42 @@
+[
+    {
+        "title": "Compiler Design",
+        "days": ["Monday", "Wednesday"],
+        "start_time": "11:00 AM",
+        "end_time": "12:15 PM",
+        "description": "CS 473: LCD",
+        "location": "C006 Lecture Center Building C"
+    },
+    {
+        "title": "Computer Algorithms II",
+        "days": ["Tuesday", "Thursday"],
+        "start_time": "5:00 PM",
+        "end_time": "6:15 PM",
+        "description": "CS 501: LCD",
+        "location": "312 Lincoln Hall"
+    },
+    {
+        "title": "Machine Learning on Graphs",
+        "days": ["Monday", "Wednesday"],
+        "start_time": "9:30 AM",
+        "end_time": "10:45 AM",
+        "description": "CS 519: LCD",
+        "location": "369 Behavioral Sciences Building"
+    },
+    {
+        "title": "Neural Networks",
+        "days": ["Tuesday", "Thursday"],
+        "start_time": "9:30 AM",
+        "end_time": "10:45 AM",
+        "description": "CS 559: LCD",
+        "location": "F004 Lecture Center Building F"
+    },
+    {
+        "title": "Data Mining & Text Mining",
+        "days": ["Tuesday", "Thursday"],
+        "start_time": "12:30 PM",
+        "end_time": "1:45 PM",
+        "description": "CS 583: LCD",
+        "location": "117 Taft Hall"
+    }
+]
