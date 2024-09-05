@@ -1,18 +1,21 @@
+# import
 import json
 from datetime import datetime, timedelta
 from icalendar import Calendar, Event
 import os
+import pytz
 
-# Load course data from JSON file
+# read json
 with open('data.json', 'r') as f:
     courses = json.load(f)
 
-start_date = datetime(2024, 8, 26)  # Start date of the semester
-end_date = datetime(2024, 12, 13)   # End date of the semester
-cal = Calendar()
+# global vars
+tz = pytz.timezone('America/Chicago')
+start_date = datetime(2024, 8, 26) # Start date of the semester
+end_date = datetime(2024, 12, 13)  # End date of the semester
+cal = Calendar() 
 
-# Map days of the week to icalendar format
-days_map = {
+days_map = { # Map days of the week to icalendar format
     "Monday": "MO",
     "Tuesday": "TU",
     "Wednesday": "WE",
@@ -22,15 +25,16 @@ days_map = {
     "Sunday": "SU"
 }
 
+# generate ical
 for course in courses:
     # Parse the course start and end times
     course_start_time = datetime.strptime(course['start_time'], '%I:%M %p').time()
     course_end_time = datetime.strptime(course['end_time'], '%I:%M %p').time()
-
-    # Create separate events for each day the course is held
+    
+    # Create different events for each day of the week the course is held
     for day in course['days']:
         event = Event()
-        event.add('summary', course['title']) 
+        event.add('summary', course['title'])
         event.add('description', course['description'])
         event.add('location', course['location'])
 
@@ -43,8 +47,8 @@ for course in courses:
             first_occurrence += timedelta(days=1)
 
         # Combine the first occurrence date with the course start and end times
-        dtstart = datetime.combine(first_occurrence, course_start_time)
-        dtend = datetime.combine(first_occurrence, course_end_time)
+        dtstart = tz.localize(datetime.combine(first_occurrence, course_start_time))
+        dtend = tz.localize(datetime.combine(first_occurrence, course_end_time))
 
         # Add the start and end time to the event
         event.add('dtstart', dtstart)
@@ -57,9 +61,9 @@ for course in courses:
         # Add the event to the calendar
         cal.add_component(event)
 
-# Write the calendar to a file
+# write ics
 directory = '.'
-file_path = os.path.join(directory, 'example2.ics')
+file_path = os.path.join(directory, 'cal.ics')
 
 with open(file_path, 'wb') as f:
     f.write(cal.to_ical())
