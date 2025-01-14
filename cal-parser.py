@@ -3,6 +3,7 @@ import json
 from datetime import datetime, timedelta
 from icalendar import Calendar, Event
 import os
+import sys
 import pytz
 
 # read json
@@ -10,9 +11,13 @@ with open('data.json', 'r') as f:
     courses = json.load(f)
 
 # global vars
+sys.exit("set timezone and start-end date before commenting out this error")
+
 tz = pytz.timezone('America/Chicago')
-start_date = datetime(2024, 8, 26) # Start date of the semester
-end_date = datetime(2024, 12, 13)  # End date of the semester
+start_date = datetime(2025, 1, 13) # Start date of the semester
+end_date = datetime(2025, 5, 2)  # End date of the semester
+
+
 cal = Calendar() 
 
 days_map = { # Map days of the week to icalendar format
